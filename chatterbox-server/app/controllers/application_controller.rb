@@ -2,11 +2,11 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   get '/messages' do
-    messages = Message.all
+    messages = Message.all.order(:created_at)
     messages.to_json
   end
 
-  post '/messages/:id' do 
+  post '/messages' do 
     messages = Message.create(
     username: params[:username],
     body: params[:body],
